@@ -19,209 +19,15 @@ class _LoginScreenState extends State<LoginScreen> {
   String email = '';
   String password = '';
   String error = '';
-
   bool _rememberMe = false;
-
-  Widget _buildEmailTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Email',
-          style: kLabelStyle,
-        ),
-        SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: Form(
-            key: _formKey,
-            child: TextFormField(
-              validator: (val) => val.isEmpty ? 'enter email' : null,
-              onChanged: (val) {
-                setState(() => email = val);
-              },
-              keyboardType: TextInputType.emailAddress,
-              style: TextStyle(
-                color: Colors.black,
-                fontFamily: 'OpenSans',
-              ),
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.only(top: 14.0),
-                prefixIcon: Icon(
-                  Icons.email,
-                  color: Colors.black,
-                ),
-                hintText: 'Enter your Email',
-                hintStyle: kHintTextStyle,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPasswordTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Password',
-          style: kLabelStyle,
-        ),
-        SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: Form(
-            key: _formKey,
-            child: TextFormField(
-              validator: (val) =>
-                  val.length < 8 ? 'enter 8+ charter password' : null,
-              onChanged: (val) {
-                setState(() => password = val);
-              },
-              obscureText: true,
-              style: TextStyle(
-                color: Colors.black,
-                fontFamily: 'OpenSans',
-              ),
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.only(top: 14.0),
-                prefixIcon: Icon(
-                  Icons.lock,
-                  color: Colors.black,
-                ),
-                hintText: 'Enter your Password',
-                hintStyle: kHintTextStyle,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildForgotPasswordBtn() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: FlatButton(
-        onPressed: () => print('Forgot Password Button Pressed'),
-        padding: EdgeInsets.only(right: 0.0),
-        child: Text(
-          'Forgot Password?',
-          style: kLabelStyle,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildRememberMeCheckbox() {
-    return Container(
-      height: 20.0,
-      child: Row(
-        children: <Widget>[
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.white),
-            child: Checkbox(
-              value: _rememberMe,
-              checkColor: Colors.green,
-              activeColor: Colors.white,
-              onChanged: (value) {
-                setState(() {
-                  _rememberMe = value;
-                });
-              },
-            ),
-          ),
-          Text(
-            'Remember me',
-            style: kLabelStyle,
-          ),
-        ],
-      ),
-    );
-  }
 
   Future navigateToHomePage(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => HomePage()));
   }
 
-  Widget _buildLoginBtn() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 25.0),
-      width: double.infinity,
-      child: RaisedButton(
-        elevation: 5.0,
-        onPressed: () => () async {
-          if (_formKey.currentState.validate()) {
-            setState(() => loading = true);
-            dynamic result = await _auth.signInEmailPass(email, password);
-            if (result == null) {
-              setState(() {
-                error = 'Incorrect Email or Password';
-                loading = false;
-              });
-            }
-          }
-          SizedBox(height: 14.0);
-          Text(error, style: TextStyle(color: Colors.red, fontSize: 14.0));
-        },
-        padding: EdgeInsets.all(15.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        color: Colors.white,
-        child: Text(
-          'LOGIN',
-          style: TextStyle(
-            color: Color(0xFF527DAA),
-            letterSpacing: 1.5,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
-          ),
-        ),
-      ),
-    );
-  }
-
   Future navigateToSignupPage(context) async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => Signup()));
-  }
-
-  Widget _buildSignupBtn() {
-    return GestureDetector(
-      onTap: () => navigateToSignupPage(context),
-      child: RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(
-              text: 'Don\'t have an Account? ',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            TextSpan(
-              text: 'Sign Up',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
   @override
@@ -273,15 +79,179 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                             SizedBox(height: 30.0),
-                            _buildEmailTF(),
-                            SizedBox(
-                              height: 30.0,
+                            Text(
+                              'Email',
+                              style: kLabelStyle,
                             ),
-                            _buildPasswordTF(),
-                            _buildForgotPasswordBtn(),
-                            _buildRememberMeCheckbox(),
-                            _buildLoginBtn(),
-                            _buildSignupBtn(),
+                            SizedBox(height: 10.0),
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              decoration: kBoxDecorationStyle,
+                              height: 60.0,
+                              child: Form(
+                                key: _formKey,
+                                child: TextFormField(
+                                  validator: (val) =>
+                                      val.isEmpty ? 'enter email' : null,
+                                  onChanged: (val) {
+                                    setState(() => email = val);
+                                  },
+                                  keyboardType: TextInputType.emailAddress,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'OpenSans',
+                                  ),
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.only(top: 14.0),
+                                    prefixIcon: Icon(
+                                      Icons.email,
+                                      color: Colors.black,
+                                    ),
+                                    hintText: 'Enter your Email',
+                                    hintStyle: kHintTextStyle,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 30.0),
+                            Text(
+                              'Password',
+                              style: kLabelStyle,
+                            ),
+                            SizedBox(height: 10.0),
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              decoration: kBoxDecorationStyle,
+                              height: 60.0,
+                              child: Form(
+                                key: _formKey,
+                                child: TextFormField(
+                                  validator: (val) => val.length < 8
+                                      ? 'enter 8+ charter password'
+                                      : null,
+                                  onChanged: (val) {
+                                    setState(() => password = val);
+                                  },
+                                  obscureText: true,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'OpenSans',
+                                  ),
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.only(top: 14.0),
+                                    prefixIcon: Icon(
+                                      Icons.lock,
+                                      color: Colors.black,
+                                    ),
+                                    hintText: 'Enter your Password',
+                                    hintStyle: kHintTextStyle,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              alignment: Alignment.centerRight,
+                              child: FlatButton(
+                                onPressed: () =>
+                                    print('Forgot Password Button Pressed'),
+                                padding: EdgeInsets.only(right: 0.0),
+                                child: Text(
+                                  'Forgot Password?',
+                                  style: kLabelStyle,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 20.0,
+                              child: Row(
+                                children: <Widget>[
+                                  Theme(
+                                    data: ThemeData(
+                                        unselectedWidgetColor: Colors.white),
+                                    child: Checkbox(
+                                      value: _rememberMe,
+                                      checkColor: Colors.green,
+                                      activeColor: Colors.white,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _rememberMe = value;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  Text(
+                                    'Remember me',
+                                    style: kLabelStyle,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 14.0),
+                            Text(error,
+                                style: TextStyle(
+                                    color: Colors.red, fontSize: 14.0)),
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 25.0),
+                              width: double.infinity,
+                              child: RaisedButton(
+                                elevation: 5.0,
+                                onPressed: () => () async {
+                                  if (_formKey.currentState.validate()) {
+                                    setState(() => loading = true);
+                                    dynamic result = await _auth
+                                        .signInEmailPass(email, password);
+                                    if (result == null) {
+                                      setState(() {
+                                        error = 'Incorrect Email or Password';
+                                        loading = false;
+                                      });
+                                    }
+                                  }
+                                },
+                                padding: EdgeInsets.all(15.0),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                color: Colors.white,
+                                child: Text(
+                                  'LOGIN',
+                                  style: TextStyle(
+                                    color: Color(0xFF527DAA),
+                                    letterSpacing: 1.5,
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'OpenSans',
+                                  ),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () => navigateToSignupPage(context),
+                              child: RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Don\'t have an Account? ',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: 'Sign Up',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
