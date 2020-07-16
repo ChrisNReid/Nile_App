@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1051474324359",
+    "firebase_url": "https://nile-app-1542a.firebaseio.com",
+    "project_id": "nile-app-1542a",
+    "storage_bucket": "nile-app-1542a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051474324359:android:2491b0c63c8b8178a54122",
+        "android_client_info": {
+          "package_name": "com.example.nile_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1051474324359-f02etvh8a8qe1i8co6igb4lsmgatcq12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArxWQTM7tKOyxvDH3Uyen1MwmXiP0PyoM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1051474324359-f02etvh8a8qe1i8co6igb4lsmgatcq12.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
