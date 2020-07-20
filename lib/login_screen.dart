@@ -63,14 +63,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: SingleChildScrollView(
                         physics: AlwaysScrollableScrollPhysics(),
                         padding: EdgeInsets.symmetric(
-                          horizontal: 40.0,
                           vertical: 120.0,
+                          //         horizontal: 150.0,
                         ),
-                        child: Column(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
+                            SizedBox(
+                              height: 50.0,
+                            ),
                             Text(
                               'Nile',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'OpenSans',
@@ -86,80 +90,109 @@ class _LoginScreenState extends State<LoginScreen> {
                     Container(
                       padding: EdgeInsets.symmetric(
                           vertical: 20.0, horizontal: 50.0),
-                      child: Form(
-                        key: _formKey,
-                        child: Column(
-                          children: <Widget>[
-                            SizedBox(height: 20.0),
-                            Text(
-                              'Email',
-                              style: kLabelStyle,
-                            ),
-                            TextFormField(
-                              style: kHintTextStyle,
-                              validator: (val) =>
-                                  val.isEmpty ? 'Enter an email' : null,
-                              onChanged: (val) {
-                                setState(() => email = val);
-                              },
-                            ),
-                            SizedBox(height: 20.0),
-                            Text(
-                              'Password',
-                              style: kLabelStyle,
-                            ),
-                            TextFormField(
-                              obscureText: true,
-                              style: kHintTextStyle,
-                              validator: (val) => val.length < 6
-                                  ? 'Enter a password 6+ chars long'
-                                  : null,
-                              onChanged: (val) {
-                                setState(() => password = val);
-                              },
-                            ),
-                            //login Button
-                            SizedBox(height: 20.0),
-                            Container(
-                              width: double.infinity,
-                              child: RaisedButton(
-                                  elevation: 5.0,
-                                  padding: EdgeInsets.all(15.0),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0),
-                                  ),
-                                  child: Text(
-                                    'LOG IN',
-                                    style: TextStyle(
-                                      color: Color(0xFF527DAA),
-                                      letterSpacing: 1.5,
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'OpenSans',
+                      child: SingleChildScrollView(
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            children: <Widget>[
+                              SizedBox(height: 300.0),
+
+                              TextFormField(
+                                decoration: kInputDecoration.copyWith(
+                                    hintText: 'Email'),
+                                style: kHintTextStyle,
+                                validator: (val) => val.isEmpty
+                                    ? 'Enter an  valid email'
+                                    : null,
+                                onChanged: (val) {
+                                  setState(() => email = val);
+                                },
+                              ),
+                              SizedBox(height: 20.0),
+
+                              TextFormField(
+                                decoration: kInputDecoration.copyWith(
+                                    hintText: 'Password'),
+                                obscureText: true,
+                                style: kHintTextStyle,
+                                validator: (val) => val.length < 6
+                                    ? 'Enter a valid password (6+ charcaters long)'
+                                    : null,
+                                onChanged: (val) {
+                                  setState(() => password = val);
+                                },
+                              ),
+                              //login Button
+                              SizedBox(height: 20.0),
+                              Container(
+                                width: double.infinity,
+                                child: RaisedButton(
+                                    elevation: 5.0,
+                                    padding: EdgeInsets.all(15.0),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30.0),
                                     ),
-                                  ),
-                                  onPressed: () async {
-                                    if (_formKey.currentState.validate()) {
-                                      setState(() => loading = true);
-                                      dynamic result = await _auth
-                                          .signInEmailPass(email, password);
-                                      if (result == null) {
-                                        setState(() {
-                                          loading = false;
-                                          error =
-                                              'Could not sign in with those credentials';
-                                        });
+                                    child: Text(
+                                      'LOG IN',
+                                      style: TextStyle(
+                                        color: Color(0xFF527DAA),
+                                        letterSpacing: 1.5,
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'OpenSans',
+                                      ),
+                                    ),
+                                    onPressed: () async {
+                                      if (_formKey.currentState.validate()) {
+                                        setState(() => loading = true);
+                                        dynamic result = await _auth
+                                            .signInEmailPass(email, password);
+                                        if (result == null) {
+                                          setState(() {
+                                            loading = false;
+                                            error =
+                                                'Could not sign in with those credentials';
+                                          });
+                                        }
                                       }
-                                    }
-                                  }),
-                            ),
-                            SizedBox(height: 12.0),
-                            Text(
-                              error,
-                              style:
-                                  TextStyle(color: Colors.red, fontSize: 14.0),
-                            ),
-                          ],
+                                    }),
+                              ),
+                              SizedBox(height: 12.0),
+                              Text(
+                                error,
+                                style: TextStyle(
+                                    color: Colors.red, fontSize: 14.0),
+                              ),
+
+                              new GestureDetector(
+                                onTap: () {
+                                  navigateToSignupPage(context);
+                                },
+                                child: RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: 'Don\'t have an Account? ',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: 'Sign Up',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

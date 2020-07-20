@@ -234,11 +234,11 @@ class _SignupState extends State<Signup> {
                 Text(error,
                     style: TextStyle(color: Colors.red, fontSize: 14.0)),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 25.0),
+                  //    padding: EdgeInsets.symmetric(vertical: 25.0),
                   width: double.infinity,
                   child: RaisedButton(
                     elevation: 5.0,
-                    padding: EdgeInsets.all(15.0),
+                    //padding: EdgeInsets.all(),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),

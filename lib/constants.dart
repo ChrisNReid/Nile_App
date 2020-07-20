@@ -22,3 +22,16 @@ final kBoxDecorationStyle = BoxDecoration(
     ),
   ],
 );
+
+final kInputDecoration = InputDecoration(
+  prefixIcon: Icon(Icons.person),
+  fillColor: Colors.transparent,
+  filled: true,
+  enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10.0),
+      borderSide: BorderSide(color: Colors.white)),
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.blue, width: 2.0),
+    borderRadius: BorderRadius.circular(10.0),
+  ),
+);
