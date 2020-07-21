@@ -15,12 +15,14 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final AuthServ _auth = AuthServ();
-  bool loading = false;
+
+  bool _rememberMe = false;
+  String fullName = '';
   String email = '';
   String password = '';
+  String confPassword = '';
   String error = '';
-  String fullName = '';
-  bool _rememberMe = false;
+  bool loading = false;
 
   Future navigateToHomePage(context) async {
     Navigator.push(
@@ -74,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: 50.0,
                             ),
                             Text(
-                              'Nile',
+                              'Sign Up',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
@@ -100,6 +102,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
                               TextFormField(
                                 decoration: kInputDecoration.copyWith(
+                                    hintText: 'Full Name'),
+                                style: kHintTextStyle,
+                                validator: (val) => val.isEmpty
+                                    ? 'Enter an your full name'
+                                    : null,
+                                onChanged: (val) {
+                                  setState(() => email = val);
+                                },
+                              ),
+                              SizedBox(height: 20.0),
+
+                              TextFormField(
+                                decoration: kInputDecoration.copyWith(
                                     hintText: 'Email'),
                                 style: kHintTextStyle,
                                 validator: (val) => val.isEmpty
@@ -122,7 +137,22 @@ class _LoginScreenState extends State<LoginScreen> {
                                 onChanged: (val) {
                                   setState(() => password = val);
                                 },
+                                keyboardType: TextInputType.emailAddress,
                               ),
+
+                              TextFormField(
+                                decoration: kInputDecoration.copyWith(
+                                    hintText: 'Confirm Password'),
+                                obscureText: true,
+                                style: kHintTextStyle,
+                                validator: (val) => password != confPassword
+                                    ? 'Passwords do not match'
+                                    : null,
+                                onChanged: (val) {
+                                  setState(() => password = val);
+                                },
+                              ),
+
                               //login Button
                               SizedBox(height: 20.0),
                               Container(
@@ -133,9 +163,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(30.0),
                                     ),
-                                    color: Colors.white,
                                     child: Text(
-                                      'LOG IN',
+                                      'Register',
                                       style: TextStyle(
                                         color: Color(0xFF527DAA),
                                         letterSpacing: 1.5,
