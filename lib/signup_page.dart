@@ -4,8 +4,14 @@ import 'package:nile_app/services/authSErv.dart';
 import 'constants.dart';
 
 class Signup extends StatefulWidget {
+  static String get fullName => fullName;
+
   @override
   _SignupState createState() => _SignupState();
+
+  static String getfullName() {
+    return fullName;
+  }
 }
 
 class _SignupState extends State<Signup> {
@@ -19,6 +25,7 @@ class _SignupState extends State<Signup> {
   String confPassword = '';
   String error = '';
   bool loading = false;
+
   // Widget build(BuildContext content) {
   //return Stack(
 //alignment: Alignment.topLeft,
@@ -37,6 +44,7 @@ class _SignupState extends State<Signup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('Edit Account info'),
         backgroundColor: Color(0xFF004D40),
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -67,9 +75,6 @@ class _SignupState extends State<Signup> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xFF004D40),
-                      Color(0xFF00796B),
-                      Color(0xFFB2DFDB),
                       Color(0xFFE0F2F1),
                     ],
                     stops: [0.1, 0.4, 0.7, 0.9],

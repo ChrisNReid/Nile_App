@@ -31,14 +31,14 @@ class AuthServ {
     }
   }
 
-//email reg in
+//email register
   Future regEmailPass(String fullName, String email, String password) async {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
 
-      //create dic of user in uid
+      //create doc of user in uid
       await DatabaseService(uid: user.uid)
           .updateUserData(fullName, email, password);
       return _userFromFirebase(user);

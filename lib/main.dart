@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nile_app/home_page.dart';
 import 'package:nile_app/models/user.dart';
 import 'package:nile_app/services/authSErv.dart';
 import 'package:nile_app/wrapper.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return StreamProvider<User>.value(
       value: AuthServ().user,
       child: MaterialApp(
-        home: Wrapper(),
+        home: HomePage(),
       ),
     );
   }

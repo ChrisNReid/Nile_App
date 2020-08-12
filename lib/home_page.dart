@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
+import 'package:nile_app/profile.dart';
 import "package:nile_app/services/authServ.dart";
+import 'package:nile_app/signup_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -21,10 +23,6 @@ class _HomeState extends State<HomePage> {
       'Index 1: Business',
       style: optionStyle,
     ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
   ];
 
   void _onItemTapped(int index) {
@@ -43,14 +41,33 @@ class _HomeState extends State<HomePage> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text('Drawer Header'),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
+              child: Text(Signup.getfullName()),
+              decoration: BoxDecoration(color: Color(0xFF004D40)),
             ),
             ListTile(
-              title: Text('Item 1'),
+              title: Text('User Name here'),
               onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                );
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Payments'),
+              onTap: () async {
+                await _auth.signOut();
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Help'),
+              onTap: () async {
+                await _auth.signOut();
                 // Update the state of the app
                 // ...
                 // Then close the drawer
@@ -83,15 +100,11 @@ class _HomeState extends State<HomePage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('Jobs'),
+            title: Text('Avaliable'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
-            title: Text('Profile'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            title: Text('School'),
+            title: Text('Request'),
           ),
         ],
         currentIndex: _selectedIndex,
