@@ -1,6 +1,7 @@
 # nile_app
 
-A new Flutter project.
+A new Flutter mobile app project.
+
 
 ## Getting Started
 
