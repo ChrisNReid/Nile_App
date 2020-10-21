@@ -3,7 +3,7 @@
 A new Flutter mobile app project.
 
 ## Images
-![](login.jpg =250x)
+![](login.jpg | width=100)
 Format: ![](url)
 
 ![](sign.jpg)
