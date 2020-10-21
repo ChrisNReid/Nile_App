@@ -3,7 +3,8 @@
 A new Flutter mobile app project.
 
 ## Images
-![Alt text](C:\Users\Chris\Downloads\homepage.jpg)
+![GitHub Logo](C:\Users\Chris\Downloads\homepage.jpg)
+Format: ![Alt Text](url)
 
 ## Getting Started
 
