@@ -4,19 +4,10 @@ A new Flutter mobile app project.
 
 ## Images
 <img src="login.jpg" width="200">
-![](login.jpg)
-
-![](sign.jpg)
-Format: ![](url)
-
-![](home.jpg)
-Format: ![](url)
-
-![](drawer.jpg)
-Format: ![](url)
-
-![](drawresign.jpg)
-Format: ![](url)
+<img src="signup.jpg" width="200">
+<img src="home.jpg" width="200">
+<img src="drawer.jpg" width="200">
+<img src="drawersign.jpg" width="200">
 ## Getting Started
 
 This project is a starting point for a Flutter application.
