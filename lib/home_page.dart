@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import 'package:nile_app/profile.dart';
-import "package:nile_app/services/authServ.dart";
 import 'package:nile_app/signup_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,7 +8,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomeState extends State<HomePage> {
-  final AuthServ _auth = AuthServ();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
@@ -41,7 +39,7 @@ class _HomeState extends State<HomePage> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text(Signup.getfullName()),
+              child: Text('name'),
               decoration: BoxDecoration(color: Color(0xFF004D40)),
             ),
             ListTile(
@@ -57,7 +55,7 @@ class _HomeState extends State<HomePage> {
             ListTile(
               title: Text('Payments'),
               onTap: () async {
-                await _auth.signOut();
+                // await _auth.signOut();
                 // Update the state of the app
                 // ...
                 // Then close the drawer
@@ -67,7 +65,7 @@ class _HomeState extends State<HomePage> {
             ListTile(
               title: Text('Help'),
               onTap: () async {
-                await _auth.signOut();
+                //await _auth.signOut();
                 // Update the state of the app
                 // ...
                 // Then close the drawer
@@ -77,7 +75,7 @@ class _HomeState extends State<HomePage> {
             ListTile(
               title: Text('Sign Out'),
               onTap: () async {
-                await _auth.signOut();
+                // await _auth.signOut();
                 // Update the state of the app
                 // ...
                 // Then close the drawer

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nile_app/services/authSErv.dart';
 import 'constants.dart';
 
 class Signup extends StatefulWidget {
@@ -15,7 +14,6 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  final AuthServ _auth = AuthServ();
   final _formKey = GlobalKey<FormState>();
 
   bool _rememberMe = false;
@@ -215,14 +213,6 @@ class _SignupState extends State<Signup> {
                             onPressed: () => () async {
                               if (_formKey.currentState.validate()) {
                                 setState(() => loading = true);
-                                dynamic result = await _auth.regEmailPass(
-                                    fullName, email, password);
-                                if (result == null) {
-                                  setState(() {
-                                    loading = false;
-                                    error = 'not valid';
-                                  });
-                                }
                               }
                             },
                           ),

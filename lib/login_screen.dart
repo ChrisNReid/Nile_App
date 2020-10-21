@@ -4,7 +4,6 @@ import 'package:nile_app/home_page.dart';
 import 'constants.dart';
 import 'loading.dart';
 import 'signup_page.dart';
-import 'package:nile_app/services/authServ.dart';
 import 'package:nile_app/signup_page.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -14,7 +13,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final AuthServ _auth = AuthServ();
   bool loading = false;
   String email = '';
   String password = '';
@@ -147,15 +145,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                     onPressed: () async {
                                       if (_formKey.currentState.validate()) {
                                         setState(() => loading = true);
-                                        dynamic result = await _auth
-                                            .signInEmailPass(email, password);
-                                        if (result == null) {
-                                          setState(() {
-                                            loading = false;
-                                            error =
-                                                'Could not sign in with those credentials';
-                                          });
-                                        }
+                                        //dynamic result = await _auth
+                                        //   .signInEmailPass(email, password);
+                                        //if (result == null) {
+                                        setState(() {
+                                          loading = false;
+                                          error =
+                                              'Could not sign in with those credentials';
+                                        });
+                                        // }
                                       }
                                     }),
                               ),

@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import "package:flutter/material.dart";
-import "package:nile_app/services/authServ.dart";
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 
@@ -11,7 +10,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfileState extends State<ProfilePage> {
-  final AuthServ _auth = AuthServ();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   /** 
   @override
