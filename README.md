@@ -3,7 +3,7 @@
 A new Flutter mobile app project.
 
 ## Images
-![Alt text](C:\Users\Chris\Downloads\homepage)
+![Alt text](C:\Users\Chris\Downloads\homepage.jpg)
 
 ## Getting Started
 
